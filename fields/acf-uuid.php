@@ -121,9 +121,9 @@ class acf_field_uuid extends acf_field {
     protected function generate_value( $version ) {
         switch($version) {
             case 'v1':
-                return Uuid::uuid1();
+                return Uuid::uuid1()->toString();
             case 'v4':
-                return Uuid::uuid4();
+                return Uuid::uuid4()->toString();
             default:
                 return '';
         }
