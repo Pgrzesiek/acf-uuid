@@ -118,41 +118,35 @@ class acf_field_uuid extends acf_field {
 
     }
 
-
-
-    /*
-    *  render_field()
-    *
-    *  Create the HTML interface for your field
-    *
-    *  @param   $field (array) the $field being rendered
-    *
-    *  @type    action
-    *  @since   3.6
-    *  @date    23/01/13
-    *
-    *  @param   $field (array) the $field being edited
-    *  @return  n/a
-    */
+    protected function generate_value( $version ) {
+        switch($version) {
+            case 'v1':
+                return Uuid::uuid1();
+            case 'v4':
+                return Uuid::uuid4();
+            default:
+                return '';
+        }
+    }
 
     function render_field( $field ) {
 
         $value = $field['value'];
 
         if(empty($field['value'])) {
-            switch($field['version']) {
-                case 'v1':
-                    $value = Uuid::uuid1();
-                    break;
-                case 'v4':
-                    $value = Uuid::uuid4();
-                    break;
-            }
+            $value = $this->generate_value($field['version']);
         }
 
         ?>
         <input readonly="readonly" type="text" name="<?php echo esc_attr($field['name']) ?>" value="<?php echo esc_attr($value) ?>" />
         <?php
+    }
+
+    function update_value( $value, $post_id, $field ) {
+        if(empty($field['value'])) {
+            $value = $this->generate_value($field['version']);
+        }
+        return $value;
     }
 
 }
