@@ -129,11 +129,13 @@ class acf_field_uuid extends acf_field {
         }
     }
 
+    protected function emptyString( $value ) {
+        return ! (isset($value) && (string) $value !== '');
+    }
+
     function render_field( $field ) {
-
         $value = $field['value'];
-
-        if(empty($field['value'])) {
+        if($this->emptyString($field['value'])) {
             $value = $this->generate_value($field['version']);
         }
 
@@ -142,8 +144,8 @@ class acf_field_uuid extends acf_field {
         <?php
     }
 
-    function update_value( $value, $post_id, $field ) {
-        if(empty($field['value'])) {
+    function update_value($value, $post_id, $field) {
+        if($this->emptyString($value)) {
             $value = $this->generate_value($field['version']);
         }
         return $value;

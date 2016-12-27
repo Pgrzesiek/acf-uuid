@@ -4,7 +4,7 @@
 Plugin Name: Advanced Custom Fields: UUID
 Plugin URI: https://github.com/cjke/acf-uuid
 Description:
-Version: 0.0.1
+Version: 0.0.2
 Author: cjke
 Author URI: https://github.com/cjke
 License: GPLv2 or later
