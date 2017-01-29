@@ -135,10 +135,6 @@ class acf_field_uuid extends acf_field {
 
     function render_field( $field ) {
         $value = $field['value'];
-        if($this->emptyString($field['value'])) {
-            $value = $this->generate_value($field['version']);
-        }
-
         ?>
         <input readonly="readonly" type="text" name="<?php echo esc_attr($field['name']) ?>" value="<?php echo esc_attr($value) ?>" />
         <?php

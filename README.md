@@ -1,6 +1,12 @@
 # Advanced Custom Fields: UUID Field
 
 This is a simple field wrapper for the fantastic UUID library ramsey/uuid, found here: https://github.com/ramsey/uuid
+to be used within Advanced Custom Fields PRO (https://advancedcustomfields.com).
+
+UUID Field is useful when placed inside a `Repeater` field. The default behavior of the `Repeater`
+field in ACF is to reassign id's to repeater items when you reorder them. This is not always
+desirable. By using this field within a repeater, will always keep the same id even if you shuffle
+around the items.
 
 ### Compatibility
 
